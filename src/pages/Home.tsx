@@ -18,6 +18,8 @@ import BackToTop from '../components/BackToTop';
 import Footer from '../components/layouts/Footer';
 import Hero from '../components/Hero';
 import PageNavigation from '../components/ui components/PageNavigation';
+import Timeline from '../components/Experience';
+import TimelineComponent from '../components/Experience';
 
 const Home: React.FC = () => {
   return (
@@ -90,11 +92,18 @@ const Home: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 1.0 }}
           >
+            <TimelineComponent />
+          </motion.div>
+          <motion.div          
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.0 }}
+          >
             <Contact />
           </motion.div>
           <BackToTop />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </motion.div>
   );
