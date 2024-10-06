@@ -35,7 +35,7 @@ const BackToTop: React.FC = () => {
     <motion.button
       onClick={scrollToTop}
       aria-label="Back to top"
-      className="fixed bottom-6 right-4 bg-orange-500 text-white p-3 rounded-full shadow-lg w-12 h-12 flex justify-center items-center" // Added flex and centering classes
+      className="fixed bottom-16 right-16 bg-orange-500 text-white p-3 rounded-full shadow-lg w-12 h-12 flex justify-center items-center" // Added flex and centering classes
       whileHover={hoverEffect} // Apply hover effect
     >
       {/* <FaArrowUp className="text-lg" /> Optional: Adjust the icon size */}

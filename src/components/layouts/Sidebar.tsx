@@ -2,7 +2,7 @@ import React from 'react';
 
 function Sidebar() {
   return (
-    <aside className="bg-gray-800 shadow-lg rounded-lg p-6 w-64 text-center fixed w-64 h-full bg-gray-800 overflow-y-auto">
+    <aside className="bg-gray-800 p-6 w-64 text-center fixed w-64 h-full bg-gray-800 overflow-y-auto">
       {/* Profile Section */}
       <div className="mb-6">
         <img

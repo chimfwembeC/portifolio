@@ -1,91 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import 'primereact/resources/themes/lara-light-indigo/theme.css'; // PrimeReact Theme
+import 'primereact/resources/primereact.min.css'; // Core CSS
+import Home from './pages/Home';
+import Blog from './pages/blog/Blog';
+import ErrorPage from './Error-page';
+import Skill from './pages/Skill';
 import Header from './components/layouts/Header';
-import About from './components/About';
-import Skills from './components/Skills';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import ContactForm from './components/Contact';
 import Footer from './components/layouts/Footer';
-import Testimonials from './components/testimonials';
-import BackToTop from './components/BackToTop';
-import ScrollProgressBar from './components/ui components/ScrollProgressBar';
-import Partners from './components/Partners';
 import Sidebar from './components/layouts/Sidebar';
+import ScrollProgressBar from './components/ui components/ScrollProgressBar';
 import SocialIcons from './components/layouts/SocialIcons';
-// import GitHubCalendarComponent from './components/ui components/GitHubCalendarComponent';
+import Resume from './pages/Resume';
+import Projects from './pages/Projects';
+import ProjectDetails from './pages/ProjectDetails';
+import Search from './pages/Search';
+import About from './pages/About';
 
 const App: React.FC = () => {
   return (
-    <motion.div
-      className="h-screen flex bg-gray-900 text-white gap-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      {/* Sidebar is fixed */}
-      {/* <Sidebar /> */}
+    <div className="">      
+    <BrowserRouter>
       <SocialIcons /> {/* Fixed sidebar for social icons */}
-      {/* Main content area next to the sidebar */}
-      <div className="w-full flex flex-col">
-        <Header />
-        <ScrollProgressBar />
+   
+    <div className=" flex-col">
+    <Header />
+    {/* <Sidebar /> */}
+    
+    <Routes >
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/blog" element={<Blog />}></Route>
+        <Route path="/skills" element={<Skill />}></Route>
+        <Route path="/projects" element={<Projects />}></Route>
+        <Route path="/projects/:id" element={<ProjectDetails />}></Route>        
+        <Route path="/resume" element={<Resume />}></Route>
+        <Route path="/about" element={<About />}></Route>
+        <Route path="/search" element={<Search />}></Route>
 
-        <main className="flex-grow">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <About />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Skills />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Projects />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <Services />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <Partners />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <Testimonials />
-          </motion.div>
-          <motion.div          
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.0 }}
-          >
-            <ContactForm />
-          </motion.div>
-          <BackToTop />
-        </main>
-        <Footer />
-      </div>
-    </motion.div>
+
+        <Route path="*" element={<ErrorPage />}></Route>      
+    </Routes>
+    <Footer />
+    </div>
+  
+</BrowserRouter>
+</div>
   );
 };
 

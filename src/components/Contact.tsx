@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-gradient-to-t from-gray-700 to-gray-800 text-white px-4 py-16 md:px-10 lg:px-20">
+    <section id="contact" className="bg-gradient-to-t from-gray-700 to-orange-800 text-white px-4 py-16 md:px-10 lg:px-20">
       <h2 className="text-3xl font-bold text-center mb-8">Get In Touch</h2>
       {submitted && (
         <div className="bg-green-500 text-white p-4 rounded-md mb-6 text-center">

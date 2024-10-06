@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { services } from '../data/servicesData'; // Adjust the import path as needed
+import AnimatedCard from './ui components/AnimatedCard';
 
 // Variants for modal animation
 const modalVariants: Variants = {
@@ -43,7 +44,7 @@ const Modal: React.FC<{ service: any; onClose: () => void }> = ({ service, onClo
 const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<any>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const itemsPerPage = 4; // Number of items per page
 
   // Calculate number of pages
   const totalPages = Math.ceil(services.length / itemsPerPage);
@@ -59,8 +60,8 @@ const Services: React.FC = () => {
   };
 
   return (
-    <div className="bg-red-500 h-full min-h-screen mt-12">
-      <section id="services" className="bg-gradient-to-b from-gray-700 to-gray-800 text-white p-6 sm:p-10 min-h-screen">
+    <div className="bg-red-500">
+      <section id="services" className="bg-gradient-to-b from-gray-700 to-orange-800 text-white p-6 sm:p-10">
         <motion.h2
           className="text-2xl sm:text-3xl font-bold text-center"
           initial="hidden"
@@ -73,18 +74,18 @@ const Services: React.FC = () => {
           Services
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-10">
           {currentItems.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-gray-800 p-4 sm:p-6 rounded-lg flex flex-col items-center transition-transform duration-300 ease-in-out min-w-[150px]"
+              className="bg-gray-800 box p-4 animate-fadein duration-500 p-4 rounded-lg  flex flex-col items-center min-w-[150px]"
               onClick={() => setSelectedService(service)} // Open modal with selected service
               variants={{ visible: { opacity: 1, transition: { staggerChildren: 0.3 } } }}
             >
               <h3 className="text-lg font-bold">{service.title}</h3>
-              <p className="mt-2 text-center text-sm sm:text-base">{service.description}</p>
+              <p className="mt-2 hidden lg:block text-center text-sm sm:text-base">{service.description}</p>
             </motion.div>
-          ))}
+          ))}           
         </div>
 
         {/* Pagination */}

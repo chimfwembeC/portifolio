@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { projects } from '../data/projectsData'; // Update the import path as needed
+import { projects } from '../data/projectsData';
+import { Link } from 'react-router-dom';
 
 const gridVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3, // Stagger children with 0.3s delay
+      staggerChildren: 0.3,
     },
   },
 };
@@ -18,16 +19,16 @@ const itemVariants = {
 };
 
 const hoverEffect = {
-  scale: 1.05, // Scale up slightly on hover
-  boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)", // Add shadow on hover
+  scale: 1.05,
+  boxShadow: "0 10px 20px rgba(0, 0, 0, 0.3)",
   transition: {
-    duration: 0.3, // Duration of the hover effect
+    duration: 0.3,
   },
 };
 
 const Projects: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; // Number of items per page
+  const itemsPerPage = 4;
 
   const totalPages = Math.ceil(projects.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -39,7 +40,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="bg-gradient-to-t from-gray-700 to-gray-800 text-white p-6 sm:p-10 min-h-screen">
+    <section id="projects" className="bg-gradient-to-t from-gray-700 to-orange-800 text-white p-6 sm:p-10 min-h-screen">
       <motion.h2
         className="text-2xl md:text-3xl lg:text-4xl font-bold text-center"
         initial="hidden"
@@ -68,7 +69,17 @@ const Projects: React.FC = () => {
               className="w-full h-40 sm:h-52 md:h-60 lg:h-48 xl:h-56 object-cover" 
             />
             <div className="p-4">
-              <h3 className="text-lg sm:text-xl font-bold mt-2">{project.title}</h3>
+              <h3 className="text-lg sm:text-xl font-bold mt-2 cursor-pointer"><Link to={`/projects/${project.id}`}>{project.title}</Link> </h3>
+              <div className="mt-2 flex flex-wrap">
+                {project.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="bg-orange-500 text-white text-sm px-2 py-1 rounded-full m-1"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
               {/* <p className="mt-2">{project.description}</p> */}
               {/* {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-4 text-blue-400 hover:underline">

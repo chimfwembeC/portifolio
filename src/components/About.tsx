@@ -22,7 +22,7 @@ const floatVariants: Variants = {
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="relative bg-gradient-to-t from-gray-700 to-gray-800 text-white py-20 px-6 md:px-10 lg:px-20">
+    <section id="about" className="relative bg-gradient-to-t from-gray-700 to-orange-800 text-white py-20 px-6 md:px-10 lg:px-20">
       {/* Background Image */}
       <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: 'url(/assets/imgs/background.jpg)' }} />
 

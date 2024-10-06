@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
+import ScrollProgressBar from '../ui components/ScrollProgressBar';
+import { Link } from 'react-router-dom';
+import { BiHomeAlt, BiSearch, BiSearchAlt, BiSearchAlt2 } from 'react-icons/bi';
+import { FaFileAlt, FaFileCode, FaInfoCircle, FaPhoneAlt, FaProjectDiagram } from 'react-icons/fa';
+import { RiServiceFill } from 'react-icons/ri';
 
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -17,15 +22,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-
-  const toggleModal = () => {
-    setIsModalOpen((prevState) => !prevState);
-  };
-
-  const handleModalClose = () => setIsModalOpen(false);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -51,9 +47,11 @@ const Header: React.FC = () => {
 
   return (
     <header>
+
+      <ScrollProgressBar />
       {/* Navbar Section */}
       <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isSticky ? 'bg-gray-900 bg-opacity-80 shadow-lg' : 'bg-transparent'}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out rounded-b-2xl px-4 ${isSticky ? 'bg-gray-900 bg-opacity-80 shadow-lg' : 'bg-transparent'}`}
       >
         <nav className="flex justify-between items-center p-6">
           <motion.div
@@ -74,7 +72,7 @@ const Header: React.FC = () => {
               aria-controls="mobile-menu"
             >
               <svg
-                className="w-8 h-8"
+                className="w-8 h-8 "
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -93,73 +91,58 @@ const Header: React.FC = () => {
           {/* Navbar Links */}
           <ul
             id="mobile-menu"
-            className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:space-x-6 absolute md:relative top-full left-0 right-0 md:top-auto md:left-auto md:right-auto md:block bg-gray-900 md:bg-transparent z-40 md:z-auto transition-all duration-300 ease-in-out`}
+            className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:space-x-2 absolute md:relative top-full left-0 right-0 md:top-auto md:left-auto md:right-auto md:block bg-gray-900 bg-opacity-80 md:bg-transparent z-40 md:z-auto transition-all duration-300 ease-in-out rounded-b-2xl`}
           >
-            {['About', 'Projects', 'Services', 'Contact'].map((section) => (
-              <motion.li
-                key={section}
-                whileHover={{ scale: 1.5 }}
-                className="hover:text-orange-500 p-4 md:p-0"
-              >
-                <button onClick={() => scrollToSection(section.toLowerCase())}>{section}</button>
-              </motion.li>
+             {/* 'Projects', 'Services','Resume','Search' */}
+            {[              
+              {name:'Home', icon: <BiHomeAlt />},
+              {name:'Projects', icon: <FaProjectDiagram />},
+              {name:'Services', icon: <RiServiceFill />},
+              {name:'Resume', icon: <FaFileAlt />},
+              // {name:'Blog', icon: <Blog />},
+              {name:'Search', icon: <BiSearchAlt />},
+            ].map((section) => (
+              <div className="" key={section.name}>
+                <div className="hidden lg:flex m-2">
+                {/* onClick={() => scrollToSection(section.toLowerCase())} */}
+                  <Link className='button' to={`/${section.name.toLowerCase()}`} >
+                    <span className="spark__container">
+                      <span className="spark" />
+                    </span>
+                    <span className="backdrop" />
+                    <span className="text flex justify-center items-center gap-4 ">{section.name} {section.icon}</span>
+                  </Link>
+                </div>
+
+                <div className="m-2 flex justify-center items-center gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    className="lg:hidden md:inline-block bg-orange-500 px-4 py-2 rounded-md hover:bg-orange-600"
+                    onClick={() => scrollToSection(section.name.toLowerCase())}
+                  >
+                    {section.name}
+                    {section.icon}
+                  </motion.button>
+                </div>
+              </div>
             ))}
           </ul>
 
+<div className={`hidden ${isSticky ? 'bg-gray-900 bg-opacity-80 shadow-lg' : 'bg-transparent'}`}>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, fugiat amet! Minus unde aliquam molestiae maxime cumque fugiat obcaecati nemo nisi fuga vero, tempora dolores aperiam quaerat delectus, ad repellat.
+</div>
+
           <motion.button
-            whileHover={{ scale: 1.3 }}
-            className="hidden md:inline-block bg-orange-500 px-4 py-2 rounded-md hover:bg-orange-600"
+            whileHover={{ scale: 1.1 }}
+            className="hidden  bg-orange-500 px-4 py-2 rounded-md hover:bg-orange-600 text-white gap-4 md:flex justify-center items-center"
             onClick={() => scrollToSection('contact')}
           >
-            Hire Me
+            Hire Me  <FaPhoneAlt />
           </motion.button>
         </nav>
       </div>
 
-      {/* Main Section */}
-      <div className="text-center mt-20 h-screen py-10 bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-        <motion.p
-          className="mt-4 text-lg md:text-xl"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Text Section */}
-            <div className="flex justify-center items-center">
-              <div className=" px-10 mx-auto">
-                <motion.h1
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-                    I’m Chimfwembe Kangwa <span className="text-orange-500">Full-stack Developer</span>
-                  </h2>
-                </motion.h1>
-                <p className="mt-4 text-gray-100 text-sm sm:text-base md:text-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
-                </p>
-                <motion.button
-                  className="mt-6 bg-orange-500 px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-orange-600"
-                  whileHover={{ scale: 1.5 }}
-                  onClick={toggleModal}
-                >
-                  View My Work
-                </motion.button>
-              </div>
-            </div>
 
-            {/* Image Section */}
-            <div className="w-full">
-              <div className="z-10 max-w-4xl flex justify-center items-center mx-auto text-center relative">
-                <img src="assets/imgs/profile.jpeg" alt="Developer" className="rounded-full md:w-96 w-64 md:h-96 h-64" />
-              </div>
-            </div>
-          </div>
-        </motion.p>
-      </div>
     </header>
   );
 };

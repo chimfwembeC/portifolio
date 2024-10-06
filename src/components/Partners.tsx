@@ -19,7 +19,7 @@ const sliderVariants: Variants = {
 
 const Partners: React.FC = () => {
   return (
-    <section id="partners" className="bg-gradient-to-t from-gray-700 to-gray-800 text-white p-6 sm:p-10">
+    <section id="partners" className="bg-gradient-to-t from-gray-700 to-orange-800 text-white p-6 sm:p-10">
       <motion.h2
         className="text-2xl sm:text-3xl font-bold text-center"
         initial="hidden"

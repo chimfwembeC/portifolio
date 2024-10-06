@@ -29,7 +29,7 @@ const Testimonials: React.FC = () => {
   const totalPages = Math.ceil(testimonials.length / itemsPerPage);
 
   return (
-    <section id="testimonials" className="bg-gradient-to-b from-gray-700 to-gray-800 text-white p-6 sm:p-10">
+    <section id="testimonials" className="bg-gradient-to-b from-gray-700 to-orange-800 text-white p-6 sm:p-10">
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Testimonials</h2>
       <motion.div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
@@ -48,7 +48,7 @@ const Testimonials: React.FC = () => {
               <img
                 src={testimonial.photo}
                 alt={testimonial.name}
-                className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover mb-4"
+                className="w-14 h-14 sm:w-18 sm:h-18 rounded-lg object-cover mb-4"
               />
             )}
             <p className="text-base sm:text-lg italic text-center">"{testimonial.feedback}"</p>
