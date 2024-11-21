@@ -111,14 +111,13 @@ const Header: React.FC = () => {
                 </div>                                                                                                               
 
                 <div className="m-2 flex justify-center items-center gap-4">
-                  <motion.link
-                    whileHover={{ scale: 1.1 }}
-                    className="lg:hidden md:inline-block bg-orange-500 px-4 py-2 w-1/4 flex justify-around text-white items-center rounded-md hover:bg-orange-600"
-                    href={`/${section.name.toLowerCase()}`}
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}                   
                   >
-                    <span>{section.name}</span>
-                    <span>{section.icon}</span>
-                  </motion.link>
+                     <Link className='bg-orange-500 p-2 rounded-md hover:bg-orange-700 transform hover:scale-105 transition duration-300' to={`/${section.name.toLowerCase()}`} >                                       
+                    <span className="text flex justify-center items-center gap-4 ">{section.name} {section.icon}</span>
+                  </Link>
+                  </motion.button>
                 </div>
               </div>
             ))}
