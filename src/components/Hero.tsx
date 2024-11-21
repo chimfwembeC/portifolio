@@ -14,6 +14,7 @@ export default function Hero() {
       };
     
     //   const handleModalClose = () => setIsModalOpen(false);
+  const profile = '/assets/imgs/profile.jpeg';
     
   return (
     <div>
@@ -44,7 +45,7 @@ export default function Hero() {
                 </p>
                 <motion.button
                   className="mt-6 bg-orange-500 px-4 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-orange-600"
-                  whileHover={{ scale: 1.5 }}
+                  whileHover={{ scale: 1.1 }}
                   onClick={toggleModal}
                 >
                   View My Work
@@ -55,7 +56,7 @@ export default function Hero() {
             {/* Image Section */}
             <div className="w-full">
               <div className="z-10 max-w-4xl flex justify-center items-center mx-auto text-center relative">
-                <img src="assets/imgs/profile.jpeg" alt="Developer" className="rounded-full md:w-96 w-64 md:h-96 h-64" />
+                <img src={profile} alt="Developer" className="rounded-full md:w-96 w-64 md:h-96 h-64" />
               </div>
             </div>
           </div>

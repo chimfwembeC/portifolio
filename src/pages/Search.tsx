@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import debounce from "lodash/debounce";
 import { skills } from "../data/SkillData";
@@ -70,7 +70,10 @@ const SearchBar: React.FC = () => {
     return parts.map((part, index) => (
       <span
         key={index}
-        style={{ fontWeight: part.toLowerCase() === query.toLowerCase() ? "bold" : "normal", color: part.toLowerCase() === query.toLowerCase() ? "orange" : "black" }}
+        style={{
+          fontWeight: part.toLowerCase() === query.toLowerCase() ? "bold" : "normal",
+          color: part.toLowerCase() === query.toLowerCase() ? "orange" : "black",
+        }}
       >
         {part}
       </span>
@@ -102,7 +105,6 @@ const SearchBar: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           />
-
         </div>
 
         {/* Search Results */}
@@ -113,40 +115,42 @@ const SearchBar: React.FC = () => {
           </div>
 
           <AnimatePresence>
-            {Object.keys(groupedResults).length > 0 ? (
-              Object.keys(groupedResults).map((type) => (
-                <div key={type}>
-                  <h3 className="text-lg font-bold text-gray-700">{type}</h3>
-                  <ul>
-                    {groupedResults[type].map((result) => (
-                      <motion.li
-                        key={result.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="mb-4 p-4 border rounded-md shadow-md hover:shadow-lg transition-shadow"
-                      >
-                        <h2 className="text-xl font-semibold">
-                          {highlightMatch(result.name || result.title || "", query)}
-                        </h2>
-                        <p className="mt-2 text-gray-700">{result.description}</p>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              ))
-            ) : query ? (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-center text-red-500"
-              >
-                No results found for "{query}"
-              </motion.p>
-            ) : null}
+            <div className="h-64 overflow-y-auto">
+              {Object.keys(groupedResults).length > 0 ? (
+                Object.keys(groupedResults).map((type) => (
+                  <div key={type}>
+                    <h3 className="text-lg font-bold text-gray-700">{type}</h3>
+                    <ul>
+                      {groupedResults[type].map((result) => (
+                        <motion.li
+                          key={result.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="mb-4 p-4 border rounded-md shadow-md hover:shadow-lg transition-shadow"
+                        >
+                          <h2 className="text-xl font-semibold">
+                            {highlightMatch(result.name || result.title || "", query)}
+                          </h2>
+                          <p className="mt-2 text-gray-700">{result.description}</p>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              ) : query ? (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center text-red-500"
+                >
+                  No results found for "{query}"
+                </motion.p>
+              ) : null}
+            </div>
           </AnimatePresence>
         </div>
       </div>

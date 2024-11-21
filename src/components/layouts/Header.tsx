@@ -9,7 +9,7 @@ import { RiServiceFill } from 'react-icons/ri';
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const profile = '/assets/imgs/profile.jpeg';
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -51,7 +51,7 @@ const Header: React.FC = () => {
       <ScrollProgressBar />
       {/* Navbar Section */}
       <div
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out rounded-b-2xl px-4 ${isSticky ? 'bg-gray-900 bg-opacity-80 shadow-lg' : 'bg-transparent'}`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out lg:rounded-b-2xl px-4 ${isSticky ? 'bg-gray-900 bg-opacity-90 shadow-lg' : 'bg-transparent'}`}
       >
         <nav className="flex justify-between items-center p-6">
           <motion.div
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img src="assets/imgs/profile.jpeg" alt="Developer" className="rounded-full w-12 h-12" />
+            <img src={profile} alt="Developer" className="rounded-full w-12 h-12" />
           </motion.div>
 
           {/* Mobile Menu Toggle */}
@@ -91,46 +91,39 @@ const Header: React.FC = () => {
           {/* Navbar Links */}
           <ul
             id="mobile-menu"
-            className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:space-x-2 absolute md:relative top-full left-0 right-0 md:top-auto md:left-auto md:right-auto md:block bg-gray-900 bg-opacity-80 md:bg-transparent z-40 md:z-auto transition-all duration-300 ease-in-out rounded-b-2xl`}
+            className={`${isMenuOpen ? 'block' : 'hidden'} md:flex md:space-x-2 absolute md:relative top-full left-0 right-0 md:top-auto md:left-auto md:right-auto md:block bg-gray-900 bg-opacity-80 md:bg-transparent z-40 md:z-auto transition-all duration-300 ease-in-out rounded-b-2xl `}
           >
-             {/* 'Projects', 'Services','Resume','Search' */}
-            {[              
-              {name:'Home', icon: <BiHomeAlt />},
-              {name:'Projects', icon: <FaProjectDiagram />},
-              {name:'Services', icon: <RiServiceFill />},
-              {name:'Resume', icon: <FaFileAlt />},
+            {/* 'Projects', 'Services','Resume','Search' */}
+            {[
+              { name: 'Home', icon: <BiHomeAlt /> },
+              { name: 'Projects', icon: <FaProjectDiagram /> },
+              { name: 'Services', icon: <RiServiceFill /> },
+              { name: 'Resume', icon: <FaFileAlt /> },
               // {name:'Blog', icon: <Blog />},
-              {name:'Search', icon: <BiSearchAlt />},
+              { name: 'Search', icon: <BiSearchAlt /> },
             ].map((section) => (
               <div className="" key={section.name}>
                 <div className="hidden lg:flex m-2">
-                {/* onClick={() => scrollToSection(section.toLowerCase())} */}
-                  <Link className='button' to={`/${section.name.toLowerCase()}`} >
-                    <span className="spark__container">
-                      <span className="spark" />
-                    </span>
-                    <span className="backdrop" />
+                  {/* onClick={() => scrollToSection(section.toLowerCase())} */}
+                  <Link className='bg-orange-500 p-2 rounded-md hover:bg-orange-700 transform hover:scale-105 transition duration-300' to={`/${section.name.toLowerCase()}`} >                                       
                     <span className="text flex justify-center items-center gap-4 ">{section.name} {section.icon}</span>
                   </Link>
-                </div>
+                </div>                                                                                                               
 
                 <div className="m-2 flex justify-center items-center gap-4">
-                  <motion.button
+                  <motion.link
                     whileHover={{ scale: 1.1 }}
-                    className="lg:hidden md:inline-block bg-orange-500 px-4 py-2 rounded-md hover:bg-orange-600"
-                    onClick={() => scrollToSection(section.name.toLowerCase())}
+                    className="lg:hidden md:inline-block bg-orange-500 px-4 py-2 w-1/4 flex justify-around text-white items-center rounded-md hover:bg-orange-600"
+                    href={`/${section.name.toLowerCase()}`}
                   >
-                    {section.name}
-                    {section.icon}
-                  </motion.button>
+                    <span>{section.name}</span>
+                    <span>{section.icon}</span>
+                  </motion.link>
                 </div>
               </div>
             ))}
           </ul>
 
-<div className={`hidden ${isSticky ? 'bg-gray-900 bg-opacity-80 shadow-lg' : 'bg-transparent'}`}>
-  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, fugiat amet! Minus unde aliquam molestiae maxime cumque fugiat obcaecati nemo nisi fuga vero, tempora dolores aperiam quaerat delectus, ad repellat.
-</div>
 
           <motion.button
             whileHover={{ scale: 1.1 }}

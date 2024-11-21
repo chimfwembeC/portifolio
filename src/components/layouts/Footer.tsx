@@ -2,12 +2,14 @@ import React from 'react';
 import { Tooltip } from 'react-tooltip';
 
 const Footer: React.FC = () => {
+  const profile = '/assets/imgs/profile.jpeg';
+
   return (
     <footer className="bg-gray-800 text-white p-6">
       <div className="flex flex-col md:flex-row items-center justify-between">
         <p className="text-center flex items-center justify-center gap-4  md:text-left mb-4 md:mb-0">
         <div className="">
-            <img src="assets/imgs/profile.jpeg" alt="Developer" className="rounded-full w-12 h-12" />
+            <img src={profile} alt="Developer" className="rounded-full w-12 h-12" />
         </div>
           &copy; 2024 Chimfwembe Kangwa. All rights reserved.
         </p>

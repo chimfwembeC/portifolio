@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FaGithub, FaTwitter, FaLinkedin, FaEnvelope, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ from_name: '', from_email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({ from_name: '', from_email: '', message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -13,10 +13,10 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newErrors = { name: '', email: '', message: '' };
+    const newErrors = { from_name: '', from_email: '', message: '' };
 
-    if (!formData.name) newErrors.name = 'Name is required';
-    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.from_name) newErrors.from_name = 'Name is required';
+    if (!formData.from_email) newErrors.from_email = 'Email is required';
     if (!formData.message) newErrors.message = 'Message is required';
 
     if (Object.values(newErrors).some(error => error)) {
@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
 
       if (!response.ok) throw new Error('Network response was not ok');
       setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ from_name: '', from_email: '', message: '' });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -87,28 +87,28 @@ const Contact: React.FC = () => {
               name="name"
               type="text"
               placeholder="Your Name"
-              value={formData.name}
+              value={formData.from_name}
               onChange={handleChange}
               className={`w-full px-4 py-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 ${
-                errors.name ? 'border-red-500' : ''
+                errors.from_name ? 'border-red-500' : ''
               }`}
             />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+            {errors.from_name && <p className="text-red-500 text-sm mt-1">{errors.from_name}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-lg font-medium mb-2">Email Address</label>
+            <label htmlFor="from_email" className="block text-lg font-medium mb-2">Email Address</label>
             <input
-              id="email"
-              name="email"
+              id="from_email"
+              name="from_email"
               type="email"
               placeholder="Email Address"
-              value={formData.email}
+              value={formData.from_email}
               onChange={handleChange}
               className={`w-full px-4 py-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 ${
-                errors.email ? 'border-red-500' : ''
+                errors.from_email ? 'border-red-500' : ''
               }`}
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.from_email && <p className="text-red-500 text-sm mt-1">{errors.from_email}</p>}
           </div>
           <div className="mb-6">
             <label htmlFor="message" className="block text-lg font-medium mb-2">Message</label>
@@ -126,7 +126,7 @@ const Contact: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-orange-500 text-black px-4 py-2 rounded-md hover:bg-orange-600 transition"
+            className="w-full bg-orange-500 text- px-4 py-2 rounded-md hover:bg-orange-600 transition"
           >
             Send Message
           </button>

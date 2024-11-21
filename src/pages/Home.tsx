@@ -33,75 +33,17 @@ const Home: React.FC = () => {
       {/* <PageNavigation /> */}
     
       {/* Main content area next to the sidebar */}
-      <div className="w-full flex flex-col">
-        <Header />
-        
-
+      <div className="w-full flex flex-col">                
         <main className="flex-grow">
-        <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Hero />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <About />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Skills />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Projects />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <Services />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <Partners />
-          </motion.div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <Testimonials />
-          </motion.div>
-          <motion.div          
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.0 }}
-          >
-            <TimelineComponent />
-          </motion.div>
-          <motion.div          
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.0 }}
-          >
-            <Contact />
-          </motion.div>
-          <BackToTop />
+        <Hero />
+        <About />         
+        <Skills />
+        <Projects />
+        <Services />
+        <Partners />
+        <Testimonials />
+        <TimelineComponent />
+        <Contact />                    
         </main>
         {/* <Footer /> */}
       </div>
